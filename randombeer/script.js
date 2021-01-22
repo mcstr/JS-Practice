@@ -7,6 +7,8 @@ const beerName = document.querySelector('h1');
 const tagline = document.querySelector('h3');
 const loader = document.getElementById('loader');
 
+let counter = 0;
+
 // show loading
 
 function loading() {
@@ -44,7 +46,13 @@ async function getBeer() {
       }
     });
   } catch (error) {
-    console.log('no beer for you today my friend', error);
+    if (counter < 10) {
+      getBeer();
+      counter += 1;
+      console.log(counter);
+    } else {
+      alert("You won't get a beer today! Sorry!");
+    }
   }
 }
 
