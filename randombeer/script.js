@@ -1,12 +1,32 @@
+const beerContainer = document.querySelector('.main-container');
 const beerImage = document.getElementById('image');
 const beerDescription = document.getElementById('description');
-const twitterButon = document.getElementById('twitter');
+const twitterButton = document.getElementById('twitter');
 const newBeer = document.getElementById('new-beer');
-console.log(newBeer, twitterButon);
+const beerName = document.querySelector('h1');
+const tagline = document.querySelector('h3');
+const loader = document.getElementById('loader');
+
+// show loading
+
+function loading() {
+  loader.hidden = false;
+  beerContainer.hidden = true;
+}
+
+// hide loading
+
+function complete() {
+  if (!loader.hidden) {
+    beerContainer.hidden = false;
+    loader.hidden = true;
+  }
+}
 
 // get random beer from API
 
 async function getBeer() {
+  loading();
   const apiUrl = 'https://api.punkapi.com/v2/beers/random';
   try {
     const response = await fetch(apiUrl);
@@ -15,17 +35,32 @@ async function getBeer() {
       if (element.image_url === null) {
         getBeer();
       } else {
+        beerName.innerText = element.name;
+        tagline.innerText = element.tagline;
         beerDescription.innerText = element.description;
         beerImage.src = element.image_url;
+        // stop loader and show quote
+        complete();
       }
     });
   } catch (error) {
     console.log('no beer for you today my friend', error);
   }
 }
+
+// tweet beer
+
+function tweetBeer() {
+  const beer = beerName.innerText;
+  const description = beerDescription.innerText;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${beer} - ${description}`;
+  window.open(twitterUrl, '_blank');
+}
+
 // on load
 getBeer();
 
 //event listeners
 
 newBeer.addEventListener('click', getBeer);
+twitterButton.addEventListener('click', tweetBeer);
