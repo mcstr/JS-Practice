@@ -25,7 +25,7 @@ body {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0 10px 10px 10px rga(0, 0, 0, 0.2);
-  margin: 10%;
+  margin: 0 200px;
 }
 
 .beer-image {
@@ -39,10 +39,6 @@ img {
 
 .beer-description {
   font-size: 1.5rem;
-}
-
-.long-beer-description {
-  font-size: 0.8rem;
 }
 
 .button-container {
@@ -100,10 +96,10 @@ button:active {
 
 @media screen and (max-width: 1000px) {
   .beer-container {
-    margin: auto 10px;
+    margin: auto 200px;
   }
   .beer-description {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
