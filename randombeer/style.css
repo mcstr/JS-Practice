@@ -29,8 +29,12 @@ body {
 }
 
 .beer-image {
-  height: 100%;
+  width: auto;
+  height: 50%;
   margin-bottom: 20px;
+}
+img {
+  height: 80vh;
 }
 
 .beer-description {
@@ -86,4 +90,10 @@ button:active {
   .beer-description {
     font-size: 0.8rem;
   }
-} ;
+}
+
+@media screen and (max-height: 1000px) {
+  img {
+    height: 40vh;
+  }
+}
