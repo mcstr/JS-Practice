@@ -7,10 +7,6 @@ const main = document.getElementById('main');
 
 let data = [];
 
-addNewUser();
-addNewUser();
-addNewUser();
-
 // functions
 
 // fetch user and add money
@@ -76,9 +72,24 @@ function showTheMillions() {
   updateDOM();
 }
 
+// calculate wealth
+
+function calculateAllWealth() {
+  let money = 0;
+  data.forEach((person) => {
+    money += person.money;
+  });
+  const wealthEl = document.createElement('div');
+  wealthEl.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(
+    money
+  )}</strong></h3>`;
+  main.appendChild(wealthEl);
+}
+
 // event listeners
 
 addUser.addEventListener('click', addNewUser);
 doubleMoney.addEventListener('click', makeMoneyDouble);
 sortRich.addEventListener('click', sortRichPeople);
 showMillionaires.addEventListener('click', showTheMillions);
+calculateWealth.addEventListener('click', calculateAllWealth);
